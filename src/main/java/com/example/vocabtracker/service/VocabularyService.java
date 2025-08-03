@@ -42,7 +42,7 @@ public class VocabularyService {
 
     public void removeVocab(Long id) {
         vocabularyRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Vocab not found!"));
 
         vocabularyRepository.deleteById(id);
     }

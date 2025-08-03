@@ -21,7 +21,6 @@ import com.example.vocabtracker.service.VocabularyService;
 import jakarta.validation.Valid;
 import lombok.experimental.FieldDefaults;
 
-import static lombok.AccessLevel.NONE;
 import static lombok.AccessLevel.PRIVATE;
 
 @RestController
@@ -35,7 +34,7 @@ public class VocabularyController {
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<VocabularyDto>>> getAllVocabulary() {
         List<VocabularyDto> list = vocabularyService.getAllVocab();
-        if (list.size() < 100)
+        if (list.isEmpty())
             return ResponseEntity
                     .ok(new ApiResponse<>(error.EMPTY_LIST.getCode(), error.EMPTY_LIST.getMessage(), null));
         return ResponseEntity.ok(new ApiResponse<>(error.SUCCESS.getCode(), error.SUCCESS.getMessage(), list));
@@ -50,7 +49,7 @@ public class VocabularyController {
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<ApiResponse<?>> removeVocab(@PathVariable Long id) {
         vocabularyService.removeVocab(id);
-        return ResponseEntity.ok(new ApiResponse<>(error.SUCCESS.getCode(), error.SUCCESS.getMessage(), ""));
+        return ResponseEntity.ok(new ApiResponse<>(error.SUCCESS.getCode(), error.SUCCESS.getMessage(), null));
     }
 
     @PutMapping("/update/{id}")

@@ -3,6 +3,7 @@ package com.example.vocabtracker.dto;
 import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class VocabularyDto {
     @NotBlank(message = "Word is not blank!")
     String word;
     @NotBlank(message = "Meaning is not blank!")
+    @Size(min = 3, message = "Min meaning length is 3!")
     String meaning;
     String example;
     String level;
